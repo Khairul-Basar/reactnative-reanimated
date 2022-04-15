@@ -15,7 +15,7 @@ export default function FirstAnimate() {
   const rotation = useSharedValue(0)
 
   const [press, setPress] = useState(0)
-  const hide = useSharedValue(1)
+  const out = useSharedValue(1)
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -24,7 +24,7 @@ export default function FirstAnimate() {
         { translateY: translateY.value },
         { rotateZ: `${rotation.value}deg` },
       ],
-      opacity: hide.value,
+      opacity: out.value,
     }
   }, [])
 
@@ -38,61 +38,138 @@ export default function FirstAnimate() {
           />
         </Animated.View>
       </View>
+      <View style={styles.btnGroup}>
+        <TouchableOpacity
+          style={styles.btnStyle}
+          onPress={() => {
+            if (press === 0) {
+              ;(translateX.value = withSpring(0)),
+                (translateY.value = withSpring(170)),
+                (rotation.value = withSequence(
+                  withSpring(-5),
+                  withRepeat(withTiming(10, { duration: 40 }), 6, true),
+                  withTiming(0),
+                ))
+              setPress(current => current + 1)
+            }
+            if (press === 1) {
+              ;(translateX.value = withSpring(175)),
+                (translateY.value = withSpring(180)),
+                (rotation.value = withSequence(
+                  withSpring(-5),
+                  withRepeat(withTiming(10, { duration: 40 }), 6, true),
+                  withTiming(0, { duration: 50 }),
+                ))
 
-      <TouchableOpacity
-        style={styles.btnStyle}
-        onPress={() => {
-          if (press === 0) {
-            ;(translateX.value = withSpring(0)),
-              (translateY.value = withSpring(170)),
+              setPress(current => current + 1)
+            }
+            if (press === 2) {
+              ;(translateX.value = withSpring(180)),
+                (translateY.value = withSpring(0)),
+                (rotation.value = withSequence(
+                  withSpring(-5),
+                  withRepeat(withTiming(10, { duration: 40 }), 6, true),
+                  withTiming(0, { duration: 50 }),
+                ))
+              setPress(current => current + 1)
+            }
+            if (press === 3) {
+              ;(translateX.value = withSpring(0)),
+                (translateY.value = withSpring(0)),
+                (rotation.value = withSequence(
+                  withSpring(-5),
+                  withRepeat(withTiming(10, { duration: 40 }), 6, true),
+                  withTiming(0, { duration: 50 }),
+                ))
+              setPress(0)
+            }
+            // console.log(translateX.value, translateY.value)
+          }}>
+          <Text style={styles.btnText}>1B</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.btnStyle}
+          onPress={() => {
+            ;(translateX.value = withSequence(withTiming(0), withSpring(175))),
+              (translateY.value = withSequence(
+                withTiming(170),
+                withSpring(180),
+              )),
               (rotation.value = withSequence(
                 withSpring(-5),
                 withRepeat(withTiming(10, { duration: 40 }), 6, true),
                 withTiming(0),
               ))
-            hide.value = withTiming(0, { duration: 3000 })
-            setPress(current => current + 1)
-          }
-          if (press === 1) {
-            hide.value = 1
-            ;(translateX.value = withSpring(175)),
-              (translateY.value = withSpring(180)),
-              (rotation.value = withSequence(
-                withSpring(-5),
-                withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                withTiming(0, { duration: 50 }),
-              ))
+          }}>
+          <Text style={styles.btnText}>2B</Text>
+        </TouchableOpacity>
 
-            setPress(current => current + 1)
-            hide.value = withTiming(0, { duration: 3000 })
-          }
-          if (press === 2) {
-            hide.value = 1
-            ;(translateX.value = withSpring(180)),
-              (translateY.value = withSpring(0)),
+        <TouchableOpacity
+          style={styles.btnStyle}
+          onPress={() => {
+            ;(translateX.value = withSequence(
+              withTiming(0),
+              withTiming(175),
+              withSpring(175),
+            )),
+              (translateY.value = withSequence(
+                withTiming(170),
+                withTiming(180),
+                withSpring(0),
+              )),
               (rotation.value = withSequence(
                 withSpring(-5),
                 withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                withTiming(0, { duration: 50 }),
+                withTiming(0),
               ))
-            setPress(current => current + 1)
-            hide.value = withTiming(0, { duration: 3000 })
-          }
-          if (press === 3) {
-            hide.value = 1
-            ;(translateX.value = withSpring(0)),
-              (translateY.value = withSpring(0)),
+          }}>
+          <Text style={styles.btnText}>3B</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.btnStyle}
+          onPress={() => {
+            ;(translateX.value = withSequence(
+              withTiming(0),
+              withTiming(175),
+              withTiming(175),
+              withSpring(0),
+            )),
+              (translateY.value = withSequence(
+                withTiming(170),
+                withTiming(180),
+                withTiming(0),
+                withSpring(0),
+              )),
               (rotation.value = withSequence(
                 withSpring(-5),
-                withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                withTiming(0, { duration: 50 }),
+                withTiming(0),
+                withTiming(0),
+                withRepeat(withTiming(10, { duration: 40 }), 10, true),
               ))
-            setPress(0)
-          }
-          // console.log(translateX.value, translateY.value)
-        }}>
-        <Text style={styles.btnText}>Click</Text>
-      </TouchableOpacity>
+          }}>
+          <Text style={styles.btnText}>HR</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.btnStyle}
+          onPress={() => {
+            out.value = withSequence(
+              withTiming(0, { duration: 500 }),
+              withSpring(1),
+            )
+            translateX.value = withSequence(
+              withTiming(0, { duration: 500 }),
+              withSpring(0),
+            )
+            translateY.value = withSequence(
+              withTiming(170, { duration: 500 }),
+              withSpring(0),
+            )
+          }}>
+          <Text style={styles.btnText}>OUT</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -103,13 +180,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  btnGroup: {
+    marginTop: 50,
+    flexDirection: 'row',
+  },
   btnStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
+    backgroundColor: 'rgba(0,0,255,0.7)',
+    padding: 10,
+    margin: 5,
+    borderRadius: 10,
   },
   btnText: {
-    color: 'black',
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   imgContainer: {
     justifyContent: 'center',
