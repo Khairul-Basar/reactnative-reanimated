@@ -10,119 +10,298 @@ import Animated, {
 } from 'react-native-reanimated'
 
 export default function FirstAnimate() {
+  // states
+  const [isVisible, setIsVisible] = useState(0)
+  const [press, setPress] = useState(0)
+  const [baseTotal, setBaseTotal] = useState(0)
+  const [baseLoading, setBaseLoading] = useState([0, 0, 0])
+
+  // shared value
+  // player1 animate Style
   const translateX = useSharedValue(0)
   const translateY = useSharedValue(0)
-  const rotation = useSharedValue(0)
 
-  const [press, setPress] = useState(0)
+  // player2 animate Style
+  const translateX2 = useSharedValue(0)
+  const translateY2 = useSharedValue(0)
+
+  // player3 animate Style
+  const translateX3 = useSharedValue(0)
+  const translateY3 = useSharedValue(0)
+
+  // player4 animate Style
+  const translateX4 = useSharedValue(0)
+  const translateY4 = useSharedValue(0)
+
+  // Spring Effect
+  const rotation = useSharedValue(0)
+  const rotation2 = useSharedValue(0)
+  const rotation3 = useSharedValue(0)
+  const rotation4 = useSharedValue(0)
+
+  // const visibility = useSharedValue(0)
   const out = useSharedValue(1)
 
-  const animatedStyle = useAnimatedStyle(() => {
+  const animatePlayer1 = useAnimatedStyle(() => {
     return {
       transform: [
         { translateX: translateX.value },
         { translateY: translateY.value },
         { rotateZ: `${rotation.value}deg` },
       ],
-      opacity: out.value,
+      // opacity: out.value,
     }
   }, [])
+
+  const animatePlayer2 = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { translateX: translateX2.value },
+        { translateY: translateY2.value },
+        { rotateZ: `${rotation2.value}deg` },
+      ],
+    }
+  })
+  const animatePlayer3 = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { translateX: translateX3.value },
+        { translateY: translateY3.value },
+        { rotateZ: `${rotation3.value}deg` },
+      ],
+    }
+  })
+
+  const animatePlayer4 = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { translateX: translateX4.value },
+        { translateY: translateY4.value },
+        { rotateZ: `${rotation4.value}deg` },
+      ],
+    }
+  })
+
+  function animate1B() {
+    switch (baseTotal) {
+      case 0:
+        // Player1
+        ;(translateX.value = withSpring(0)),
+          (translateY.value = withSpring(170)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          )),
+          setBaseLoading([1, 0, 0])
+        setBaseTotal(baseTotal + 1)
+        break
+      case 1:
+        if (baseLoading[0] && !baseLoading[1] && !baseLoading[2]) {
+          ;(translateX.value = withSpring(175)),
+            (translateY.value = withSpring(180)),
+            (rotation.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0, { duration: 50 }),
+            ))((translateX2.value = withSpring(0))),
+            (translateY2.value = withSpring(170)),
+            (rotation2.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0, { duration: 50 }),
+            ))
+          setBaseLoading([1, 1, 0])
+          setBaseTotal(baseTotal + 1)
+        }
+        break
+      case 2:
+        if (baseLoading[0] && baseLoading[1] && !baseLoading[2]) {
+          ;(translateX.value = withSpring(180)),
+            (translateY.value = withSpring(0)),
+            (rotation.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0, { duration: 50 }),
+            ))((translateX2.value = withSpring(175))),
+            (translateY2.value = withSpring(180)),
+            (rotation2.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0, { duration: 50 }),
+            ))((translateX3.value = withSpring(0))),
+            (translateY3.value = withSpring(170)),
+            (rotation3.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0, { duration: 50 }),
+            ))
+          setBaseLoading([1, 1, 1])
+          setBaseTotal(baseTotal + 1)
+        }
+        break
+      case 3:
+        ;(translateX.value = withSpring(0)),
+          (translateY.value = withSpring(0)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0, { duration: 50 }),
+          ))((translateX2.value = withSpring(180))),
+          (translateY2.value = withSpring(0)),
+          (rotation2.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0, { duration: 50 }),
+          )),
+          (translateX3.value = withSpring(175)),
+          (translateY3.value = withSpring(180)),
+          (rotation3.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0, { duration: 50 }),
+          ))((translateX4.value = withSpring(0))),
+          (translateY4.value = withSpring(170)),
+          (rotation4.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0, { duration: 50 }),
+          ))
+        setBaseLoading([1, 1, 1])
+
+        break
+    }
+  }
+
+  function animate2B() {
+    ;(translateX.value = withSequence(withTiming(0), withSpring(175))),
+      (translateY.value = withSequence(withTiming(170), withSpring(180))),
+      (rotation.value = withSequence(
+        withSpring(-5),
+        withRepeat(withTiming(10, { duration: 40 }), 6, true),
+        withTiming(0),
+      ))
+  }
+
+  function animate3B() {
+    ;(translateX.value = withSequence(
+      withTiming(0),
+      withTiming(175),
+      withSpring(175),
+    )),
+      (translateY.value = withSequence(
+        withTiming(170),
+        withTiming(180),
+        withSpring(0),
+      )),
+      (rotation.value = withSequence(
+        withSpring(-5),
+        withRepeat(withTiming(10, { duration: 40 }), 6, true),
+        withTiming(0),
+      ))
+  }
+
+  function animateHR() {
+    ;(translateX.value = withSequence(
+      withTiming(0),
+      withTiming(175),
+      withTiming(175),
+      withSpring(0),
+    )),
+      (translateY.value = withSequence(
+        withTiming(170),
+        withTiming(180),
+        withTiming(0),
+        withSpring(0),
+      )),
+      (rotation.value = withSequence(
+        withSpring(-5),
+        withTiming(0),
+        withTiming(0),
+        withRepeat(withTiming(10, { duration: 40 }), 10, true),
+      ))
+  }
+
+  function animateOut() {
+    out.value = withSequence(withTiming(0, { duration: 500 }), withSpring(1))
+    translateX.value = withSequence(
+      withTiming(0, { duration: 500 }),
+      withSpring(0),
+    )
+    translateY.value = withSequence(
+      withTiming(170, { duration: 500 }),
+      withSpring(0),
+    )
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.square}>
-        <Animated.View style={[styles.imgContainer, animatedStyle]}>
+        <Animated.View
+          style={[
+            styles.imgContainer,
+            { position: 'absolute' },
+            animatePlayer1,
+          ]}>
           <Animated.Image
             source={require('../../assets/asset2.png')}
             style={styles.imgStyle}
           />
         </Animated.View>
+        {baseLoading[0] ? (
+          <Animated.View
+            style={[
+              styles.imgContainer,
+              animatePlayer2,
+              { position: 'absolute' },
+            ]}>
+            <Animated.Image
+              source={require('../../assets/asset2.png')}
+              style={styles.imgStyle}
+            />
+          </Animated.View>
+        ) : null}
+        {baseLoading[1] ? (
+          <Animated.View
+            style={[
+              styles.imgContainer,
+              animatePlayer3,
+              { position: 'absolute' },
+            ]}>
+            <Animated.Image
+              source={require('../../assets/asset2.png')}
+              style={styles.imgStyle}
+            />
+          </Animated.View>
+        ) : null}
+        {baseLoading[2] ? (
+          <Animated.View
+            style={[
+              styles.imgContainer,
+              animatePlayer4,
+              { position: 'absolute' },
+            ]}>
+            <Animated.Image
+              source={require('../../assets/asset2.png')}
+              style={styles.imgStyle}
+            />
+          </Animated.View>
+        ) : null}
       </View>
-      <View style={styles.btnGroup}>
-        <TouchableOpacity
-          style={styles.btnStyle}
-          onPress={() => {
-            if (press === 0) {
-              ;(translateX.value = withSpring(0)),
-                (translateY.value = withSpring(170)),
-                (rotation.value = withSequence(
-                  withSpring(-5),
-                  withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                  withTiming(0),
-                ))
-              setPress(current => current + 1)
-            }
-            if (press === 1) {
-              ;(translateX.value = withSpring(175)),
-                (translateY.value = withSpring(180)),
-                (rotation.value = withSequence(
-                  withSpring(-5),
-                  withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                  withTiming(0, { duration: 50 }),
-                ))
 
-              setPress(current => current + 1)
-            }
-            if (press === 2) {
-              ;(translateX.value = withSpring(180)),
-                (translateY.value = withSpring(0)),
-                (rotation.value = withSequence(
-                  withSpring(-5),
-                  withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                  withTiming(0, { duration: 50 }),
-                ))
-              setPress(current => current + 1)
-            }
-            if (press === 3) {
-              ;(translateX.value = withSpring(0)),
-                (translateY.value = withSpring(0)),
-                (rotation.value = withSequence(
-                  withSpring(-5),
-                  withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                  withTiming(0, { duration: 50 }),
-                ))
-              setPress(0)
-            }
-            // console.log(translateX.value, translateY.value)
-          }}>
+      <View style={styles.btnGroup}>
+        <TouchableOpacity style={styles.btnStyle} onPress={() => animate1B()}>
           <Text style={styles.btnText}>1B</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.btnStyle}
-          onPress={() => {
-            ;(translateX.value = withSequence(withTiming(0), withSpring(175))),
-              (translateY.value = withSequence(
-                withTiming(170),
-                withSpring(180),
-              )),
-              (rotation.value = withSequence(
-                withSpring(-5),
-                withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                withTiming(0),
-              ))
-          }}>
+        <TouchableOpacity style={styles.btnStyle} onPress={() => animate2B()}>
           <Text style={styles.btnText}>2B</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.btnStyle}
           onPress={() => {
-            ;(translateX.value = withSequence(
-              withTiming(0),
-              withTiming(175),
-              withSpring(175),
-            )),
-              (translateY.value = withSequence(
-                withTiming(170),
-                withTiming(180),
-                withSpring(0),
-              )),
-              (rotation.value = withSequence(
-                withSpring(-5),
-                withRepeat(withTiming(10, { duration: 40 }), 6, true),
-                withTiming(0),
-              ))
+            animate3B()
           }}>
           <Text style={styles.btnText}>3B</Text>
         </TouchableOpacity>
@@ -130,42 +309,14 @@ export default function FirstAnimate() {
         <TouchableOpacity
           style={styles.btnStyle}
           onPress={() => {
-            ;(translateX.value = withSequence(
-              withTiming(0),
-              withTiming(175),
-              withTiming(175),
-              withSpring(0),
-            )),
-              (translateY.value = withSequence(
-                withTiming(170),
-                withTiming(180),
-                withTiming(0),
-                withSpring(0),
-              )),
-              (rotation.value = withSequence(
-                withSpring(-5),
-                withTiming(0),
-                withTiming(0),
-                withRepeat(withTiming(10, { duration: 40 }), 10, true),
-              ))
+            animateHR()
           }}>
           <Text style={styles.btnText}>HR</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btnStyle}
           onPress={() => {
-            out.value = withSequence(
-              withTiming(0, { duration: 500 }),
-              withSpring(1),
-            )
-            translateX.value = withSequence(
-              withTiming(0, { duration: 500 }),
-              withSpring(0),
-            )
-            translateY.value = withSequence(
-              withTiming(170, { duration: 500 }),
-              withSpring(0),
-            )
+            animateOut()
           }}>
           <Text style={styles.btnText}>OUT</Text>
         </TouchableOpacity>
@@ -216,3 +367,12 @@ const styles = StyleSheet.create({
     transform: [{ rotate: `225deg` }],
   },
 })
+
+// {visibility.value === 1 ? (
+//           <Animated.View style={[styles.imgContainer, newAnimatedStyle]}>
+//             <Animated.Image
+//               source={require('../../assets/asset2.png')}
+//               style={styles.imgStyle}
+//             />
+//           </Animated.View>
+//         ) : null}
