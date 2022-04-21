@@ -222,3 +222,47 @@ function animate1B() {
       break
   }
 }
+
+
+// {baseLoading[0] ? (
+//   <Animated.View
+//     style={[
+//       styles.imgContainer,
+//       animatePlayer2,
+//       { position: 'absolute' },
+//     ]}>
+    
+//     <Animated.Image
+//       source={require('../../assets/asset2.png')}
+//       style={styles.imgStyle}
+//     />
+//   </Animated.View>
+// ) : null}
+// {baseLoading[1] ? (
+//   <Animated.View
+//     style={[
+//       styles.imgContainer,
+//       animatePlayer3,
+//       { position: 'absolute' },
+//     ]}>
+    
+//     <Animated.Image
+//       source={require('../../assets/asset2.png')}
+//       style={styles.imgStyle}
+//     />
+//   </Animated.View>
+// ) : null}
+// {baseLoading[2] ? (
+//   <Animated.View
+//     style={[
+//       styles.imgContainer,
+//       animatePlayer4,
+//       { position: 'absolute' },
+//     ]}>
+    
+//     <Animated.Image
+//       source={require('../../assets/asset2.png')}
+//       style={styles.imgStyle}
+//     />
+//   </Animated.View>
+// ) : null}
