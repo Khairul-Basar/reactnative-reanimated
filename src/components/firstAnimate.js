@@ -15,6 +15,7 @@ export default function FirstAnimate() {
   const [press, setPress] = useState(0)
   const [baseTotal, setBaseTotal] = useState(0)
   const [baseLoading, setBaseLoading] = useState([0, 0, 0])
+  const [currentBasePlayer, setCurrentBasePlayer ] = useState(1)
 
   // shared value
   // player1 animate Style
@@ -88,17 +89,18 @@ export default function FirstAnimate() {
   function animate1B() {
     switch(baseTotal){
       case 0: 
-        if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
-          (translateX.value = withSpring(0)),
-            (translateY.value = withSpring(170)),
-            (rotation.value = withSequence(
-              withSpring(-5),
-              withRepeat(withTiming(10, { duration: 40 }), 6, true),
-              withTiming(0),
-            ))
-            setBaseLoading([1,0,0])
-        }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
-          (translateX.value = withSpring(180)),
+      if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX2.value = withSpring(0)),
+          (translateY2.value = withSpring(170)),
+          (rotation2.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+          setBaseLoading([1,0,0])
+          
+      }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(180)),
           (translateY.value = withSpring(170)),
           (rotation.value = withSequence(
             withSpring(-5),
@@ -106,27 +108,28 @@ export default function FirstAnimate() {
             withTiming(0),
           ))
           setBaseLoading([0,1,0])
-        }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
-          (translateX.value = withSpring(180)),
-          (translateY.value = withSpring(0)),
-          (rotation.value = withSequence(
-            withSpring(-5),
-            withRepeat(withTiming(10, { duration: 40 }), 6, true),
-            withTiming(0),
-          ))
-          setBaseLoading([0,0,1])
-        }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
-          (translateX.value = withSpring(0)),
-          (translateY.value = withSpring(0)),
-          (rotation.value = withSequence(
-            withSpring(-5),
-            withRepeat(withTiming(10, { duration: 40 }), 6, true),
-            withTiming(0),
-          ))
-          setBaseLoading([0,0,0])
-        }
+      }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(180)),
+        (translateY.value = withSpring(0)),
+        (rotation.value = withSequence(
+          withSpring(-5),
+          withRepeat(withTiming(10, { duration: 40 }), 6, true),
+          withTiming(0),
+        ))
+        setBaseLoading([0,0,1])
+      }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
+        (translateX.value = withSpring(0)),
+        (translateY.value = withSpring(0)),
+        (rotation.value = withSequence(
+          withSpring(-5),
+          withRepeat(withTiming(10, { duration: 40 }), 6, true),
+          withTiming(0),
+        ))
+        setBaseLoading([0,0,0])
+      }
         setBaseTotal(1)
         break
+
       case 1:
         if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
           (translateX.value = withSpring(0)),
@@ -137,15 +140,24 @@ export default function FirstAnimate() {
               withTiming(0),
             ))
             setBaseLoading([1,0,0])
+            
         }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
-          (translateX.value = withSpring(180)),
-            (translateY.value = withSpring(170)),
-            (rotation.value = withSequence(
+          (translateX2.value = withSpring(180)),
+            (translateY2.value = withSpring(170)),
+            (rotation2.value = withSequence(
               withSpring(-5),
               withRepeat(withTiming(10, { duration: 40 }), 6, true),
               withTiming(0),
             ))
-            setBaseLoading([0,1,0])
+
+            (translateX3.value = withSpring(0)),
+            (translateY3.value = withSpring(170)),
+            (rotation3.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0),
+            ))
+            setBaseLoading([1,1,0])
         }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
           (translateX.value = withSpring(180)),
           (translateY.value = withSpring(0)),
@@ -178,15 +190,40 @@ export default function FirstAnimate() {
               withTiming(0),
             ))
             setBaseLoading([1,0,0])
-        }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
-          (translateX.value = withSpring(180)),
-            (translateY.value = withSpring(0)),
-            (rotation.value = withSequence(
+        }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+          (translateX3.value = withSpring(180)),
+            (translateY3.value = withSpring(170)),
+            (rotation3.value = withSequence(
               withSpring(-5),
               withRepeat(withTiming(10, { duration: 40 }), 6, true),
               withTiming(0),
             ))
-          setBaseLoading([0,0,1])
+          setBaseLoading([1,1,0])
+        }else if(baseLoading[0] && baseLoading[1] && !baseLoading[2]){
+          (translateX2.value = withSpring(180)),
+            (translateY2.value = withSpring(0)),
+            (rotation2.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0),
+            ))
+
+            (translateX3.value = withSpring(180)),
+            (translateY3.value = withSpring(170)),
+            (rotation3.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0),
+            ))
+
+            (translateX4.value = withSpring(0)),
+            (translateY4.value = withSpring(170)),
+            (rotation4.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0),
+            ))            
+          setBaseLoading([1,1,1])
         }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
           (translateX.value = withSpring(0)),
             (translateY.value = withSpring(0)),
@@ -196,18 +233,9 @@ export default function FirstAnimate() {
               withTiming(0),
             ))
           setBaseLoading([0,0,0])
-        }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
-          (translateX.value = withSpring(0)),
-            (translateY.value = withSpring(170)),
-            (rotation.value = withSequence(
-              withSpring(-5),
-              withRepeat(withTiming(10, { duration: 40 }), 6, true),
-              withTiming(0),
-            ))
-          setBaseLoading([1,0,0])
         }
-      setBaseTotal(3)
-      break
+        setBaseTotal(3)
+        break
 
       case 3:
         if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
@@ -219,24 +247,6 @@ export default function FirstAnimate() {
               withTiming(0),
             ))
             setBaseLoading([1,0,0])
-        }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
-          (translateX.value = withSpring(0)),
-            (translateY.value = withSpring(0)),
-            (rotation.value = withSequence(
-              withSpring(-5),
-              withRepeat(withTiming(10, { duration: 40 }), 6, true),
-              withTiming(0),
-            ))
-          setBaseLoading([0,0,0])
-        }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
-          (translateX.value = withSpring(180)),
-            (translateY.value = withSpring(0)),
-            (rotation.value = withSequence(
-              withSpring(-5),
-              withRepeat(withTiming(10, { duration: 40 }), 6, true),
-              withTiming(0),
-            ))
-          setBaseLoading([0,0,1])
         }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
           (translateX.value = withSpring(180)),
             (translateY.value = withSpring(170)),
@@ -246,14 +256,32 @@ export default function FirstAnimate() {
               withTiming(0),
             ))
           setBaseLoading([0,1,0])
+        }else if(baseLoading[0] && baseLoading[1] && !baseLoading[2]){
+          (translateX.value = withSpring(180)),
+            (translateY.value = withSpring(0)),
+            (rotation.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0),
+            ))
+          setBaseLoading([1,1,1])
+        }else if(baseLoading[0] && baseLoading[1] && baseLoading[2]){
+          (translateX.value = withSpring(0)),
+            (translateY.value = withSpring(0)),
+            (rotation.value = withSequence(
+              withSpring(-5),
+              withRepeat(withTiming(10, { duration: 40 }), 6, true),
+              withTiming(0),
+            ))
+          setBaseLoading([1,1,1])
         }
-      setBaseTotal(0)
-      break
+        setBaseTotal(0)
+        break
 
     }
-    
-  
+      
   }
+
 
   // 2B
 
@@ -688,24 +716,45 @@ export default function FirstAnimate() {
   }
 
   function animateHR() {
-    ;(translateX.value = withSequence(
-      withTiming(0),
-      withTiming(175),
-      withTiming(175),
-      withSpring(0),
-    )),
-      (translateY.value = withSequence(
-        withTiming(170),
-        withTiming(180),
+    if(currentBasePlayer===1){
+      (translateX.value = withSequence(
         withTiming(0),
+        withTiming(175),
+        withTiming(175),
         withSpring(0),
       )),
-      (rotation.value = withSequence(
-        withSpring(-5),
+        (translateY.value = withSequence(
+          withTiming(170),
+          withTiming(180),
+          withTiming(0),
+          withSpring(0),
+        )),
+        (rotation.value = withSequence(
+          withSpring(-5),
+          withTiming(0),
+          withTiming(0),
+          withRepeat(withTiming(10, { duration: 40 }), 10, true),
+        ))
+    }else if(currentBasePlayer===2){
+      (translateX2.value = withSequence(
         withTiming(0),
-        withTiming(0),
-        withRepeat(withTiming(10, { duration: 40 }), 10, true),
-      ))
+        withTiming(175),
+        withTiming(175),
+        withSpring(0),
+      )),
+        (translateY2.value = withSequence(
+          withTiming(170),
+          withTiming(180),
+          withTiming(0),
+          withSpring(0),
+        )),
+        (rotation2.value = withSequence(
+          withSpring(-5),
+          withTiming(0),
+          withTiming(0),
+          withRepeat(withTiming(10, { duration: 40 }), 10, true),
+        ))
+    }
   }
 
   function animateOut() {
@@ -723,6 +772,7 @@ export default function FirstAnimate() {
   return (
     <View style={styles.container}>
       <View style={styles.square}>
+        
         <Animated.View
           style={[
             styles.imgContainer,
@@ -734,6 +784,52 @@ export default function FirstAnimate() {
             style={styles.imgStyle}
           />
         </Animated.View>
+
+        {baseLoading[0] ? (
+          <Animated.View
+            style={[
+              styles.imgContainer,
+              animatePlayer2,
+              { position: 'absolute' },
+            ]}>
+            <Text>2</Text>
+            <Animated.Image
+              source={require('../../assets/asset2.png')}
+              style={styles.imgStyle}
+            />
+          </Animated.View>
+        ) : null}
+
+        {baseLoading[1] ? (
+          <Animated.View
+            style={[
+              styles.imgContainer,
+              animatePlayer3,
+              { position: 'absolute' },
+            ]}>
+            <Text>3</Text>
+            <Animated.Image
+              source={require('../../assets/asset2.png')}
+              style={styles.imgStyle}
+            />
+          </Animated.View>
+        ) : null}
+
+        {baseLoading[2] ? (
+          <Animated.View
+            style={[
+              styles.imgContainer,
+              animatePlayer4,
+              { position: 'absolute' },
+            ]}>
+            <Text>4</Text>
+            <Animated.Image
+              source={require('../../assets/asset2.png')}
+              style={styles.imgStyle}
+            />
+          </Animated.View>
+        ) : null}
+        
         
       </View>
 
@@ -766,7 +862,7 @@ export default function FirstAnimate() {
           onPress={() => {
             animateOut()
           }}>
-          <Text style={styles.btnText}>OUT</Text>
+          <Text style={styles.btnText}>{currentBasePlayer}</Text>
         </TouchableOpacity>
       </View>
     </View>

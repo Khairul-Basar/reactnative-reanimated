@@ -224,6 +224,230 @@ function animate1B() {
 }
 
 
+
+// 1B For single player
+
+function animate1B() {
+  switch(baseTotal){
+    case 0: 
+      if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(0)),
+          (translateY.value = withSpring(170)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+          setBaseLoading([1,0,0])
+      }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(180)),
+        (translateY.value = withSpring(170)),
+        (rotation.value = withSequence(
+          withSpring(-5),
+          withRepeat(withTiming(10, { duration: 40 }), 6, true),
+          withTiming(0),
+        ))
+        setBaseLoading([0,1,0])
+      }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(180)),
+        (translateY.value = withSpring(0)),
+        (rotation.value = withSequence(
+          withSpring(-5),
+          withRepeat(withTiming(10, { duration: 40 }), 6, true),
+          withTiming(0),
+        ))
+        setBaseLoading([0,0,1])
+      }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
+        (translateX.value = withSpring(0)),
+        (translateY.value = withSpring(0)),
+        (rotation.value = withSequence(
+          withSpring(-5),
+          withRepeat(withTiming(10, { duration: 40 }), 6, true),
+          withTiming(0),
+        ))
+        setBaseLoading([0,0,0])
+      }
+      setBaseTotal(1)
+      break
+    case 1:
+      if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(0)),
+          (translateY.value = withSpring(170)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+          setBaseLoading([1,0,0])
+      }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(180)),
+          (translateY.value = withSpring(170)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+          setBaseLoading([0,1,0])
+      }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(180)),
+        (translateY.value = withSpring(0)),
+        (rotation.value = withSequence(
+          withSpring(-5),
+          withRepeat(withTiming(10, { duration: 40 }), 6, true),
+          withTiming(0),
+        ))
+        setBaseLoading([0,0,1])
+      }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
+        (translateX.value = withSpring(0)),
+        (translateY.value = withSpring(0)),
+        (rotation.value = withSequence(
+          withSpring(-5),
+          withRepeat(withTiming(10, { duration: 40 }), 6, true),
+          withTiming(0),
+        ))
+        setBaseLoading([0,0,0])
+      }
+      setBaseTotal(2)
+      break
+  
+    case 2:
+      if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(0)),
+          (translateY.value = withSpring(170)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+          setBaseLoading([1,0,0])
+      }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(180)),
+          (translateY.value = withSpring(0)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+        setBaseLoading([0,1,0])
+      }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(0)),
+          (translateY.value = withSpring(0)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+        setBaseLoading([0,0,1])
+      }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
+        (translateX.value = withSpring(0)),
+          (translateY.value = withSpring(170)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+        setBaseLoading([0,0,0])
+      }
+    setBaseTotal(3)
+    break
+
+    case 3:
+      if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(0)),
+          (translateY.value = withSpring(170)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+          setBaseLoading([1,0,0])
+
+      }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(0)),
+          (translateY.value = withSpring(0)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+        setBaseLoading([0,1,0])
+
+      }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
+        (translateX.value = withSpring(180)),
+          (translateY.value = withSpring(0)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+        setBaseLoading([0,0,1])
+
+      }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
+        (translateX.value = withSpring(180)),
+          (translateY.value = withSpring(170)),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+        setBaseLoading([0,0,0])
+
+      }
+    setBaseTotal(0)
+    break
+
+  }
+  
+
+}
+
+
+
+
+
+// animate1B Case Function 
+// function caseFuntion(){
+//   if(!baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+//     (translateX.value = withSpring(0)),
+//       (translateY.value = withSpring(170)),
+//       (rotation.value = withSequence(
+//         withSpring(-5),
+//         withRepeat(withTiming(10, { duration: 40 }), 6, true),
+//         withTiming(0),
+//       ))
+//       setBaseLoading([1,0,0])
+//   }else if(baseLoading[0] && !baseLoading[1] && !baseLoading[2]){
+//     (translateX.value = withSpring(180)),
+//     (translateY.value = withSpring(170)),
+//     (rotation.value = withSequence(
+//       withSpring(-5),
+//       withRepeat(withTiming(10, { duration: 40 }), 6, true),
+//       withTiming(0),
+//     ))
+//     setBaseLoading([0,1,0])
+//   }else if(!baseLoading[0] && baseLoading[1] && !baseLoading[2]){
+//     (translateX.value = withSpring(180)),
+//     (translateY.value = withSpring(0)),
+//     (rotation.value = withSequence(
+//       withSpring(-5),
+//       withRepeat(withTiming(10, { duration: 40 }), 6, true),
+//       withTiming(0),
+//     ))
+//     setBaseLoading([0,0,1])
+//   }else if(!baseLoading[0] && !baseLoading[1] && baseLoading[2]){
+//     (translateX.value = withSpring(0)),
+//     (translateY.value = withSpring(0)),
+//     (rotation.value = withSequence(
+//       withSpring(-5),
+//       withRepeat(withTiming(10, { duration: 40 }), 6, true),
+//       withTiming(0),
+//     ))
+//     setBaseLoading([0,0,0])
+//   }
+// }
+
+
+
 // {baseLoading[0] ? (
 //   <Animated.View
 //     style={[
