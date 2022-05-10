@@ -308,17 +308,19 @@ export default function FirstAnimate() {
   }
 
   function animate2B() {
-    ;(translateX.value = withSequence(withTiming(0), withSpring(175))),
-      (translateY.value = withSequence(withTiming(170), withSpring(180))),
-      (rotation.value = withSequence(
-        withSpring(-5),
-        withRepeat(withTiming(10, { duration: 40 }), 6, true),
-        withTiming(0),
-      ))
+    (translateX.value = withSequence(withTiming(0), withSpring(175))),
+          (translateY.value = withSequence(withTiming(170), withSpring(180))),
+          (rotation.value = withSequence(
+            withSpring(-5),
+            withRepeat(withTiming(10, { duration: 40 }), 6, true),
+            withTiming(0),
+          ))
+    
+    
   }
 
   function animate3B() {
-    ;(translateX.value = withSequence(
+    (translateX.value = withSequence(
       withTiming(0),
       withTiming(175),
       withSpring(175),
@@ -333,6 +335,7 @@ export default function FirstAnimate() {
         withRepeat(withTiming(10, { duration: 40 }), 6, true),
         withTiming(0),
       ))
+    
   }
 
   function animateHR() {
@@ -377,7 +380,7 @@ export default function FirstAnimate() {
             { position: 'absolute' },
             animatePlayer1,
           ]}>
-          
+          <Text>1</Text>
           <Animated.Image
             source={require('../../assets/asset2.png')}
             style={styles.imgStyle}
