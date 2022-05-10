@@ -377,7 +377,7 @@ export default function FirstAnimate() {
             { position: 'absolute' },
             animatePlayer1,
           ]}>
-          <Text>1</Text>
+          
           <Animated.Image
             source={require('../../assets/asset2.png')}
             style={styles.imgStyle}
@@ -390,7 +390,7 @@ export default function FirstAnimate() {
               animatePlayer2,
               { position: 'absolute' },
             ]}>
-            <Text>2</Text>
+            
             <Animated.Image
               source={require('../../assets/asset2.png')}
               style={styles.imgStyle}
@@ -404,7 +404,7 @@ export default function FirstAnimate() {
               animatePlayer3,
               { position: 'absolute' },
             ]}>
-            <Text>3</Text>
+            
             <Animated.Image
               source={require('../../assets/asset2.png')}
               style={styles.imgStyle}
@@ -418,7 +418,7 @@ export default function FirstAnimate() {
               animatePlayer4,
               { position: 'absolute' },
             ]}>
-            <Text>4</Text>
+            
             <Animated.Image
               source={require('../../assets/asset2.png')}
               style={styles.imgStyle}
