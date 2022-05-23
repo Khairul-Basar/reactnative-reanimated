@@ -40,9 +40,7 @@ export default function FirstAnimate() {
                 }
             }
 
-            if (animateType !== AnimateType.HR) {
-                players[getNextPlayerFromHome(returnedPlayers)].animate(animateType);
-            }
+            players[getNextPlayerFromHome(returnedPlayers)].animate(animateType);
         }
     }
 
