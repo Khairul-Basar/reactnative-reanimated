@@ -3,7 +3,6 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 import {Player, AnimateType} from '../classes/Player';
 import Animated from 'react-native-reanimated';
 
-// baseball animation
 export default function FirstAnimate() {
 
     let players = [
@@ -23,7 +22,6 @@ export default function FirstAnimate() {
                 break;
             }
         }
-
 
         if (!isStarted) {
             players[0].animate(animateType);
@@ -60,83 +58,23 @@ export default function FirstAnimate() {
     return (
         <View style={styles.container}>
             <View style={styles.square}>
-                {Array(4).fill(0).map((_, i) => {
-                    return (<Animated.View
-                        key={i}
-                        style={[
-                            styles.imgContainer,
-                            {position: 'absolute'},
-                            players[i].getStyle(),
-                        ]}>
-                        <Text>{i}</Text>
-                        <Animated.Image
-                            source={require('../../assets/asset2.png')}
-                            style={styles.imgStyle}
-                        />
-                    </Animated.View>)
-                })
-
-
+                {
+                    Array(4).fill(0).map((_, i) => {
+                        return (<Animated.View
+                            key={i}
+                            style={[
+                                styles.imgContainer,
+                                {position: 'absolute'},
+                                players[i].getStyle(),
+                            ]}>
+                            <Text>{i}</Text>
+                            <Animated.Image
+                                source={require('../../assets/asset2.png')}
+                                style={styles.imgStyle}
+                            />
+                        </Animated.View>)
+                    })
                 }
-
-                {/*    style={[*/}
-                {/*{activePlayers[0] && <Animated.View*/}
-                {/*        styles.imgContainer,*/}
-                {/*        {position: 'absolute'},*/}
-                {/*        animatePlayer0,*/}
-                {/*    ]}>*/}
-                {/*    <Text>0</Text>*/}
-                {/*    <Animated.Image*/}
-                {/*        source={require('../../assets/asset2.png')}*/}
-                {/*        style={styles.imgStyle}*/}
-                {/*    />*/}
-                {/*</Animated.View>*/}
-                {/*}*/}
-
-                {/*{activePlayers[1] &&*/}
-                {/*    <Animated.View*/}
-                {/*        style={[*/}
-                {/*            styles.imgContainer,*/}
-                {/*            {position: 'absolute'},*/}
-                {/*            animatePlayer1,*/}
-                {/*        ]}>*/}
-                {/*        <Text>1</Text>*/}
-                {/*        <Animated.Image*/}
-                {/*            source={require('../../assets/asset2.png')}*/}
-                {/*            style={styles.imgStyle}*/}
-                {/*        />*/}
-                {/*    </Animated.View>*/}
-                {/*}*/}
-
-                {/*{activePlayers[1] &&*/}
-                {/*    <Animated.View*/}
-                {/*        style={[*/}
-                {/*            styles.imgContainer,*/}
-                {/*            {position: 'absolute'},*/}
-                {/*            animatePlayer2,*/}
-                {/*        ]}>*/}
-                {/*        <Text>2</Text>*/}
-                {/*        <Animated.Image*/}
-                {/*            source={require('../../assets/asset2.png')}*/}
-                {/*            style={styles.imgStyle}*/}
-                {/*        />*/}
-                {/*    </Animated.View>*/}
-                {/*}*/}
-
-                {/*{activePlayers[2] &&*/}
-                {/*    <Animated.View*/}
-                {/*        style={[*/}
-                {/*            styles.imgContainer,*/}
-                {/*            {position: 'absolute'},*/}
-                {/*            animatePlayer3,*/}
-                {/*        ]}>*/}
-                {/*        <Text>3</Text>*/}
-                {/*        <Animated.Image*/}
-                {/*            source={require('../../assets/asset2.png')}*/}
-                {/*            style={styles.imgStyle}*/}
-                {/*        />*/}
-                {/*    </Animated.View>*/}
-                {/*}*/}
             </View>
 
             <View style={styles.btnGroup}>
