@@ -6,10 +6,10 @@ import Animated from 'react-native-reanimated';
 export default function FirstAnimate() {
 
     let players = [
-        new Player(0, 0),
-        new Player(0, 1),
-        new Player(0, 2),
-        new Player(0, 3),
+        new Player(0, 0, true),
+        new Player(0, 1, false),
+        new Player(0, 2, false),
+        new Player(0, 3, false),
     ]
 
     function animate(animateType: AnimateType) {
@@ -24,7 +24,11 @@ export default function FirstAnimate() {
         }
 
         if (!isStarted) {
-            players[0].animate(animateType);
+            players[0].animate(animateType, () => {
+                if (animateType !== AnimateType.HR) {
+                    players[1].show();
+                }
+            });
         } else {
 
             // players who returned to home
@@ -33,14 +37,29 @@ export default function FirstAnimate() {
             for (let i = 0; i < 4; i++) {
                 const player = players[i];
                 if (!player.isAtHome()) {
-                    const nextPosition = player.animate(animateType);
+                    const nextPosition = player.animate(animateType, () => {
+                        console.log('animated outside stuff')
+                    });
                     if (nextPosition === 0) {
                         returnedPlayers.push(player.id);
                     }
                 }
             }
 
-            players[getNextPlayerFromHome(returnedPlayers)].animate(animateType);
+            players[getNextPlayerFromHome(returnedPlayers)].animate(animateType, () => {
+                const visiblePlayers = getVisiblePlayersAtFrom();
+                console.log('finished running from home', visiblePlayers);
+                if (visiblePlayers.length === 0) {
+                    const hiddenPlayer = getHiddenPlayerFromHome();
+                    if (hiddenPlayer) {
+                        players[hiddenPlayer].show();
+                    }
+                } else if (visiblePlayers.length > 1) {
+                    for (let i = 1; i < visiblePlayers.length; i++) {
+                        players[visiblePlayers[i]].hide();
+                    }
+                }
+            });
         }
     }
 
@@ -48,6 +67,26 @@ export default function FirstAnimate() {
         for (let i = 0; i < 4; i++) {
             const player = players[i];
             if (player.isAtHome() && !returnedPlayers.includes(player.id)) {
+                return i;
+            }
+        }
+    }
+
+    function getVisiblePlayersAtFrom(): number[] {
+        let playerIds = [];
+        for (let i = 0; i < 4; i++) {
+            const player = players[i];
+            if (player.isAtHome() && player.isVisible()) {
+                playerIds.push(player.id);
+            }
+        }
+        return playerIds;
+    }
+
+    function getHiddenPlayerFromHome(): number | undefined {
+        for (let i = 0; i < 4; i++) {
+            const player = players[i];
+            if (player.isAtHome() && !player.isVisible()) {
                 return i;
             }
         }
@@ -65,7 +104,6 @@ export default function FirstAnimate() {
                                 {position: 'absolute'},
                                 players[i].getStyle(),
                             ]}>
-                            <Text>{i}</Text>
                             <Animated.Image
                                 source={require('../../assets/asset2.png')}
                                 style={styles.imgStyle}
@@ -143,13 +181,13 @@ const styles = StyleSheet.create({
     imgStyle: {
         height: 50,
         width: 50,
-        // transform: [{rotate: '130deg'}],
+        transform: [{rotate: '130deg'}],
     },
     square: {
         height: 200,
         width: 200,
         borderWidth: 2,
         borderColor: 'salmon',
-        // transform: [{rotate: `225deg`}],
+        transform: [{rotate: `225deg`}],
     },
 })

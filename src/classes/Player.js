@@ -1,17 +1,20 @@
 import {
+    runOnJS, runOnUI,
     useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming,
 } from "react-native-reanimated";
 
 const AnimateType = {HR: 0, B1: 1, B2: 2, B3: 3}
 const POSITIONS = [{x: 0, y: 0}, {x: 0, y: 170}, {x: 180, y: 170}, {x: 180, y: 0}];
+const DURATION = 300;
 
 class Player {
 
-    constructor(position: number, id: number) {
+    constructor(position: number, id: number, isVisible: boolean) {
         this.position = position;
         this.id = id; // constant
         this.tx = useSharedValue(POSITIONS[position].x);
         this.ty = useSharedValue(POSITIONS[position].y);
+        this.opacity = useSharedValue(isVisible ? 1 : 0);
     }
 
     isAtHome(): boolean {
@@ -21,8 +24,10 @@ class Player {
     getStyle() {
         const tx = this.tx;
         const ty = this.ty;
+        const opacity = this.opacity;
         return useAnimatedStyle(() => {
             return {
+                opacity: opacity.value,
                 transform: [
                     {translateX: tx.value},
                     {translateY: ty.value},
@@ -64,7 +69,9 @@ class Player {
     }
 
     // returns the next position
-    animate(type: AnimateType): number {
+    animate(type: AnimateType, animationDidFinish): number {
+        this.show();
+
         const nextPosition = this.getNextPosition(type);
         const paths = this.getAnimatingPaths(this.position, nextPosition);
         const animatingPathsCount = paths.length;
@@ -88,7 +95,26 @@ class Player {
             this.ty.value = withSequence(withTiming(paths[0].y), withTiming(paths[1].y), withTiming(paths[2].y), withSpring(paths[3].y));
         }
 
+        setTimeout(() => {
+            animationDidFinish();
+            if (nextPosition === AnimateType.HR) {
+                // this.hide();
+            }
+        }, DURATION * animatingPathsCount + 10);
+
         return nextPosition;
+    }
+
+    show() {
+        this.opacity.value = 1;
+    }
+
+    hide() {
+        this.opacity.value = 0;
+    }
+
+    isVisible() {
+        return this.opacity.value === 1;
     }
 }
 
